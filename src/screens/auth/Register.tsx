@@ -1,5 +1,6 @@
-import {FC, useEffect, useState} from 'react';
+import {FC, useContext, useEffect, useState} from 'react';
 import {View, SafeAreaView, useWindowDimensions} from 'react-native';
+import {UserContext} from 'src/context/UserContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AlreadyText, Btn, InputGroup, Title} from 'src/components';
 import {colors, routes} from 'src/constants';
@@ -11,6 +12,7 @@ interface RegisterInterface {
 }
 
 const Register: FC<RegisterInterface> = ({navigation}) => {
+  const {setUser, setAuthenticated} = useContext<any>(UserContext);
   const {width} = useWindowDimensions();
   const [username, setUsername] = useState<string>('');
   const [email, setEmail] = useState<string>('');
@@ -47,6 +49,8 @@ const Register: FC<RegisterInterface> = ({navigation}) => {
             'app_user',
             JSON.stringify({username, email, password}),
           );
+          setUser({username, email, password});
+          setAuthenticated(true);
           setUsername('');
           setEmail('');
           setPassword('');
@@ -62,33 +66,27 @@ const Register: FC<RegisterInterface> = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.authContainer}>
-      {/* Body Container*/}
       <View style={{width: width * 0.8}}>
-        {/* Title */}
         <Title title="Register" />
-        {/* Textbox group */}
         <InputGroup
           handler={setUsername}
           placeholder="Username"
           value={username}
         />
-        {/* Textbox group */}
         <InputGroup
           type="email"
           handler={setEmail}
           placeholder="Email"
           value={email}
         />
-        {/* Textbox group */}
         <InputGroup
           type="password"
           handler={setPassword}
           placeholder="Password"
           value={password}
         />
-        {/* Submit Btn */}
         <Btn loading={loading} handler={registerHandler} label="Register" />
-        {/* Alert */}
+        {/* Alert Component*/}
         <AwesomeAlert
           show={showAlert}
           showProgress={false}
@@ -101,7 +99,6 @@ const Register: FC<RegisterInterface> = ({navigation}) => {
           cancelButtonColor={colors.PRIMARY}
           onCancelPressed={() => setShowAlert(false)}
         />
-        {/* Already text */}
         <AlreadyText
           handler={() => navigation.navigate(routes.LOGIN)}
           mainText="Already have an account?"

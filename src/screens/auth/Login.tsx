@@ -1,16 +1,18 @@
-import {FC, useEffect, useState} from 'react';
+import {FC, useContext, useEffect, useState} from 'react';
 import {View, SafeAreaView, useWindowDimensions} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AlreadyText, Btn, InputGroup, Title} from 'src/components';
 import {colors, routes} from 'src/constants';
 import styles from 'src/styles/Common.styles';
 import AwesomeAlert from 'react-native-awesome-alerts';
+import {UserContext} from 'src/context/UserContext';
 
 interface LoginInterface {
   navigation: any;
 }
 
 const Login: FC<LoginInterface> = ({navigation}) => {
+  const {setUser, setAuthenticated} = useContext<any>(UserContext);
   const {width} = useWindowDimensions();
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -44,6 +46,8 @@ const Login: FC<LoginInterface> = ({navigation}) => {
           if (existingUser.password === password) {
             //Setting the current logged in user
             AsyncStorage.setItem('app_user', JSON.stringify({email, password}));
+            setUser({email, password});
+            setAuthenticated(true);
             setEmail('');
             setPassword('');
           } else {
@@ -61,27 +65,22 @@ const Login: FC<LoginInterface> = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.authContainer}>
-      {/* Body Container*/}
       <View style={{width: width * 0.8}}>
-        {/* Title */}
         <Title title="Log in" />
-        {/* Textbox group */}
         <InputGroup
           type="email"
           handler={setEmail}
           placeholder="Email"
           value={email}
         />
-        {/* Textbox group */}
         <InputGroup
           type="password"
           handler={setPassword}
           placeholder="Password"
           value={password}
         />
-        {/* Submit Btn */}
         <Btn loading={loading} handler={loginHandler} label="Login" />
-        {/* Alert */}
+        {/* Alert Component*/}
         <AwesomeAlert
           show={showAlert}
           showProgress={false}
@@ -94,7 +93,6 @@ const Login: FC<LoginInterface> = ({navigation}) => {
           cancelButtonColor={colors.PRIMARY}
           onCancelPressed={() => setShowAlert(false)}
         />
-        {/* Already text */}
         <AlreadyText
           handler={() => navigation.navigate(routes.REGISTER)}
           mainText="Register a new account?"
