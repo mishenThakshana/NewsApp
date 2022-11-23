@@ -22,7 +22,7 @@ export const UserProvider: FC<UserProviderChildren> = ({children}) => {
 
   useEffect(() => {
     getLoggedInUser();
-  }, []);
+  }, [authenticated]);
 
   return (
     <UserContext.Provider

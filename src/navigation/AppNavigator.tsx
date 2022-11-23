@@ -7,18 +7,13 @@ import {useContext, useEffect, useState} from 'react';
 import {UserContext} from 'src/context/UserContext';
 
 const AppNavigator = () => {
-  const [loggedIn, setLoggedIn] = useState<boolean>(false);
   const {authenticated} = useContext<any>(UserContext);
-
-  useEffect(() => {
-    authenticated && setLoggedIn(true);
-  }, [authenticated]);
 
   return (
     <>
       <StatusBar backgroundColor={colors.PRIMARY} barStyle="light-content" />
       <NavigationContainer>
-        {loggedIn ? <MainNavigator /> : <AuthNavigator />}
+        {authenticated ? <MainNavigator /> : <AuthNavigator />}
       </NavigationContainer>
     </>
   );
