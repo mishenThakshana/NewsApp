@@ -4,3 +4,4 @@ export {default as FavouriteSVG} from './favourite.svg';
 export {default as FavouriteActiveSVG} from './favourite-active.svg';
 export {default as ProfileSVG} from './profile.svg';
 export {default as ProfileActiveSVG} from './profile-active.svg';
+export {default as NotificationsImg} from './notifications.png';

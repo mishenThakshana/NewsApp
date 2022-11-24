@@ -46,6 +46,42 @@ const styles = StyleSheet.create({
     fontSize: 15,
   },
   alreadySubText: {color: colors.PRIMARY, fontFamily: 'Nunito-Bold'},
+  // Dashboard
+  rootContainer: {
+    flex: 1,
+    backgroundColor: colors.LIGHT,
+  },
+  topBarContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  topBarSearchBar: {
+    flex: 1,
+    borderWidth: 1,
+    borderColor: 'rgba(0, 0, 0, 0.2)',
+    borderRadius: 40,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: 20,
+  },
+  topBarSearchBarInput: {fontFamily: 'Nunito-Regular', color: colors.DARK},
+  searchListContainer: {
+    backgroundColor: '#fff',
+    width: '80%',
+    position: 'absolute',
+    top: 52,
+    left: 8,
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
+    elevation: 10,
+  },
+  searchListHorizontalLine: {
+    flex: 1,
+    height: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.2)',
+  },
 });
 
 export default styles;

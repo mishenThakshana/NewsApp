@@ -1,12 +1,15 @@
-import {useContext} from 'react';
-import {SafeAreaView, Text} from 'react-native';
-import {UserContext} from 'src/context/UserContext';
+import {useEffect} from 'react';
+import {Image, SafeAreaView, Text, TextInput, View} from 'react-native';
+import {Topbar} from 'src/components';
+import {protectedHttp} from 'src/helpers/HttpHelper';
+import styles from 'src/styles/Common.styles';
 
 const Home = () => {
-  const {user} = useContext<any>(UserContext);
   return (
-    <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}}>
-      <Text style={{color: '#000'}}>{user.email}</Text>
+    <SafeAreaView style={styles.rootContainer}>
+      <View style={{margin: 20}}>
+        <Topbar />
+      </View>
     </SafeAreaView>
   );
 };
