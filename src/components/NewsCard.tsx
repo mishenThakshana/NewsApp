@@ -15,7 +15,7 @@ const NewsCard: FC<NewsCardInterface> = article => {
   return (
     <View style={{marginRight: 5}}>
       <ImageBackground
-        style={{width: 345, height: 280}}
+        style={{width: 350, height: 280}}
         imageStyle={{borderRadius: 10}}
         source={{uri: article.urlToImage}}
         resizeMode="contain">

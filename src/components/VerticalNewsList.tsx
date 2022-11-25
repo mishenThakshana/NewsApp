@@ -1,20 +1,21 @@
 import {FC} from 'react';
-import {ActivityIndicator, FlatList} from 'react-native';
+import {ActivityIndicator, FlatList, useWindowDimensions} from 'react-native';
 import {colors} from 'src/constants';
-import NewsCard from './NewsCard';
+import NewsCard2 from './NewsCard2';
 
-interface BreakingNewsInterface {
+interface VerticalNewsListInterface {
   articles: any;
 }
 
-const BreakingNews: FC<BreakingNewsInterface> = ({articles}) => {
+const VerticalNewsList: FC<VerticalNewsListInterface> = ({articles}) => {
+  const {height} = useWindowDimensions();
   return articles.length > 0 ? (
     <FlatList
-      showsHorizontalScrollIndicator={false}
-      horizontal
+      showsVerticalScrollIndicator={false}
       data={articles}
+      style={{height: height * 0.4}}
       renderItem={({item}) => (
-        <NewsCard
+        <NewsCard2
           author={item.author}
           title={item.title}
           publishedAt={item.publishedAt}
@@ -28,4 +29,4 @@ const BreakingNews: FC<BreakingNewsInterface> = ({articles}) => {
   );
 };
 
-export default BreakingNews;
+export default VerticalNewsList;

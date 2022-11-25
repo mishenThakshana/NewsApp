@@ -76,6 +76,7 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 10,
     borderBottomRightRadius: 10,
     elevation: 10,
+    zIndex: 10,
   },
   searchListHorizontalLine: {
     flex: 1,
@@ -105,7 +106,7 @@ const styles = StyleSheet.create({
   },
   newsCardContainer: {
     flex: 1,
-    backgroundColor: 'rgba(0,0,0, 0.5)',
+    backgroundColor: 'rgba(0,0,0, 0.4)',
     borderRadius: 10,
     paddingHorizontal: 20,
     justifyContent: 'center',
@@ -126,6 +127,48 @@ const styles = StyleSheet.create({
     fontFamily: 'Nunito-MediumItalic',
     color: colors.LIGHT,
     fontSize: 14,
+  },
+  filterActive: {
+    backgroundColor: colors.PRIMARY,
+    borderWidth: 1,
+    borderColor: colors.PRIMARY,
+  },
+  filterInactive: {
+    backgroundColor: colors.LIGHT,
+    borderWidth: 1,
+    borderColor: '#A9A9A9',
+  },
+  filterBtn: {
+    borderRadius: 20,
+    alignItems: 'center',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    marginRight: 5,
+    marginVertical: 20,
+  },
+  newsCard2Container: {
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0, 0.5)',
+    borderRadius: 10,
+    paddingHorizontal: 20,
+    justifyContent: 'space-between',
+  },
+  newsCard2Title: {
+    fontFamily: 'NewYorkMedium-Semibold',
+    color: colors.LIGHT,
+    fontSize: 14,
+    marginTop: 10,
+  },
+  newsCard2BottomContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginVertical: 10,
+  },
+  newsCard2BottomText: {
+    fontFamily: 'Nunito-SemiBold',
+    color: colors.LIGHT,
+    fontSize: 12,
   },
 });
 
