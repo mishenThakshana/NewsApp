@@ -10,6 +10,7 @@ import {
   ProfileActiveSVG,
 } from 'src/assets/images/icons';
 import HomeNavigator from './HomeNavigator';
+import styles from 'src/styles/Common.styles';
 
 const Tab = createBottomTabNavigator();
 
@@ -18,16 +19,7 @@ const MainNavigator = () => {
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
-        tabBarStyle: {
-          height: 60,
-          paddingTop: 5,
-          bottom: 25,
-          left: 20,
-          right: 20,
-          position: 'absolute',
-          elevation: 5,
-          borderRadius: 32,
-        },
+        tabBarStyle: styles.tabBarStyle,
         tabBarLabelStyle: {
           paddingVertical: 5,
           fontFamily: 'Nunito-Regular',

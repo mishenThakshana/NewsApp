@@ -2,6 +2,16 @@ import {StyleSheet} from 'react-native';
 import {colors} from 'src/constants';
 
 const styles = StyleSheet.create({
+  tabBarStyle: {
+    height: 60,
+    paddingTop: 5,
+    bottom: 25,
+    left: 20,
+    right: 20,
+    position: 'absolute',
+    elevation: 5,
+    borderRadius: 32,
+  },
   titleContainer: {alignItems: 'center', marginBottom: 20},
   title: {fontFamily: 'Nunito-Bold', color: colors.DARK, fontSize: 36},
   authContainer: {
@@ -169,6 +179,63 @@ const styles = StyleSheet.create({
     fontFamily: 'Nunito-SemiBold',
     color: colors.LIGHT,
     fontSize: 12,
+  },
+  // News Detail
+  newsDetailBackBtn: {
+    zIndex: 10,
+    backgroundColor: 'rgba(245, 245, 245,0.5)',
+    alignSelf: 'flex-start',
+    margin: 15,
+    padding: 8,
+    alignItems: 'center',
+    borderRadius: 10,
+  },
+  newsDetailShadowBoxContainer: {
+    position: 'absolute',
+    top: 250,
+    alignItems: 'center',
+    zIndex: 10,
+  },
+  newsDetailShadowBox: {
+    marginHorizontal: 20,
+    backgroundColor: 'rgba(245, 245, 245,0.9)',
+    borderRadius: 16,
+    padding: 20,
+  },
+  newsDetailTimeStamp: {
+    fontSize: 12,
+    fontFamily: 'Nunito-SemiBold',
+    color: '#2E0505',
+  },
+  newsDetailTitle: {
+    fontSize: 16,
+    fontFamily: 'NewYorkMedium-Bold',
+    color: '#2E0505',
+    marginVertical: 5,
+  },
+  newsDetailAuthor: {
+    fontSize: 10,
+    fontFamily: 'Nunito-ExtraBold',
+    color: '#2E0505',
+  },
+  newsDetailDescriptionOuterContainer: {
+    backgroundColor: colors.LIGHT,
+    position: 'absolute',
+    top: 300,
+    borderTopRightRadius: 24,
+    borderTopLeftRadius: 24,
+  },
+  newsDetailDescriptionContainer: {
+    position: 'absolute',
+    top: 120,
+    alignItems: 'center',
+    paddingHorizontal: 20,
+  },
+  newsDetailDescription: {
+    fontSize: 16,
+    fontFamily: 'Nunito-Regular',
+    color: '#2E0505',
+    marginVertical: 5,
   },
 });
 

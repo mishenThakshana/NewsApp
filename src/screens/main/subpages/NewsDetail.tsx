@@ -5,10 +5,13 @@ import {
   Image,
   useWindowDimensions,
   TouchableOpacity,
+  Text,
 } from 'react-native';
 import {colors} from 'src/constants';
 import styles from 'src/styles/Common.styles';
 import MaterialIcon from 'react-native-vector-icons/Ionicons';
+import {firstLetterCapital} from 'src/helpers/FunctionHelper';
+import {formatDistance} from 'date-fns';
 
 interface NewsDetailInterface {
   navigation: any;
@@ -21,16 +24,8 @@ const NewsDetail: FC<NewsDetailInterface> = ({navigation, route}) => {
 
   return (
     <SafeAreaView style={styles.rootContainer}>
-      <View
-        style={{
-          zIndex: 10,
-          backgroundColor: 'rgba(245, 245, 245,0.5)',
-          alignSelf: 'flex-start',
-          margin: 15,
-          padding: 8,
-          alignItems: 'center',
-          borderRadius: 10,
-        }}>
+      {/* Back btn */}
+      <View style={styles.newsDetailBackBtn}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <MaterialIcon
             onPress={() => navigation.goBack()}
@@ -40,39 +35,41 @@ const NewsDetail: FC<NewsDetailInterface> = ({navigation, route}) => {
           />
         </TouchableOpacity>
       </View>
+      {/* Image */}
       <Image
         style={{position: 'absolute', width, height: height * 0.4}}
         source={{uri: article.urlToImage}}
         resizeMode="cover"
       />
-      {/* Shadow Box */}
-      <View
-        style={{
-          position: 'absolute',
-          top: 250,
-          alignItems: 'center',
-          width,
-          zIndex: 10,
-        }}>
-        <View
-          style={{
-            width: 311,
-            height: 141,
-            backgroundColor: 'rgba(245, 245, 245,0.9)',
-            borderRadius: 16,
-          }}></View>
+      {/* Shadow Box Container*/}
+      <View style={[styles.newsDetailShadowBoxContainer, {width}]}>
+        {/* Shdow Box */}
+        <View style={styles.newsDetailShadowBox}>
+          {/* Timestamp */}
+          <Text style={styles.newsDetailTimeStamp}>
+            {firstLetterCapital(
+              formatDistance(new Date(article.publishedAt), Date.now()),
+            )}
+          </Text>
+          {/* Title */}
+          <Text style={styles.newsDetailTitle}>{article.title}</Text>
+          {/* Author */}
+          {article.author && (
+            <Text style={styles.newsDetailAuthor}>
+              Published by {article.author}
+            </Text>
+          )}
+        </View>
       </View>
       {/* body */}
       <View
-        style={{
-          width,
-          backgroundColor: colors.LIGHT,
-          height,
-          position: 'absolute',
-          top: 300,
-          borderTopRightRadius: 24,
-          borderTopLeftRadius: 24,
-        }}></View>
+        style={[styles.newsDetailDescriptionOuterContainer, {width, height}]}>
+        <View style={[styles.newsDetailDescriptionContainer, {width}]}>
+          <Text style={styles.newsDetailDescription}>
+            {article.description}
+          </Text>
+        </View>
+      </View>
     </SafeAreaView>
   );
 };
