@@ -1,5 +1,12 @@
 import {FC, useState} from 'react';
-import {View, Text, TextInput, Image, FlatList} from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  Image,
+  FlatList,
+  ActivityIndicator,
+} from 'react-native';
 import {protectedHttp} from 'src/helpers/HttpHelper';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 import {colors, routes} from 'src/constants';
@@ -13,10 +20,13 @@ interface TopbarInterface {
 
 const Topbar: FC<TopbarInterface> = ({navigation}) => {
   const [titles, setTitles] = useState<any>([]);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const searchNews = debounce(value => {
+    setLoading(true);
     if (value == '') {
       setTitles([]);
+      setLoading(false);
       return;
     } else {
       protectedHttp
@@ -27,7 +37,8 @@ const Topbar: FC<TopbarInterface> = ({navigation}) => {
             arr.push(article);
           });
           setTitles(arr);
-        });
+        })
+        .finally(() => setLoading(false));
     }
   }, 500);
 
@@ -46,7 +57,11 @@ const Topbar: FC<TopbarInterface> = ({navigation}) => {
             />
           </View>
           <View>
-            <Ionicon name="ios-search-outline" color="#A9A9A9" size={22} />
+            {loading ? (
+              <ActivityIndicator color={colors.PRIMARY} size={24} />
+            ) : (
+              <Ionicon name="ios-search-outline" color="#A9A9A9" size={22} />
+            )}
           </View>
         </View>
         {/* Notifications */}
