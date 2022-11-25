@@ -6,6 +6,7 @@ import {
   SectionTitle,
   Topbar,
   FilterBtnList,
+  TitleWithFilter,
 } from 'src/components';
 import {protectedHttp} from 'src/helpers/HttpHelper';
 import styles from 'src/styles/Common.styles';
@@ -76,6 +77,9 @@ const Home: FC<HomeInterface> = ({navigation}) => {
           <HorizontalNewsList navigation={navigation} articles={articles} />
         )}
         {/* Category news */}
+        {/* Filter */}
+        <TitleWithFilter title="Top News" />
+        {/* Categories */}
         <FilterBtnList
           activeFilter={activeFilter}
           setActiveFilter={(item: string) => setActiveFilter(item)}

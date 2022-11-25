@@ -237,6 +237,12 @@ const styles = StyleSheet.create({
     color: '#2E0505',
     marginVertical: 5,
   },
+  titleWithFitlerContainer: {
+    marginTop: 20,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
 });
 
 export default styles;
