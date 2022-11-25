@@ -61,6 +61,8 @@
 		<string>Nunito-Light.ttf</string>
 		<string>Nunito-Regular.ttf</string>
 		<string>Nunito-SemiBold.ttf</string>
+		<string>Nunito-BoldItalic.ttf</string>
+		<string>Nunito-MediumItalic.ttf</string>
 	</array>
 </dict>
 </plist>

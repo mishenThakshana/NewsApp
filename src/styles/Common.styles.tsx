@@ -82,6 +82,51 @@ const styles = StyleSheet.create({
     height: 1,
     backgroundColor: 'rgba(0, 0, 0, 0.2)',
   },
+  sectionTitleContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginVertical: 20,
+  },
+  sectionTitle: {
+    fontFamily: 'NewYorkMedium-Bold',
+    color: colors.DARK,
+    fontSize: 18,
+  },
+  sectionTitleBtnContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  sectionTitleBtnLabel: {
+    color: colors.SECONDARY,
+    fontFamily: 'Nunito-Regular',
+    fontSize: 12,
+  },
+  newsCardContainer: {
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0, 0.5)',
+    borderRadius: 10,
+    paddingHorizontal: 20,
+    justifyContent: 'center',
+  },
+  newsCardAuthorText: {
+    fontFamily: 'Nunito-ExtraBold',
+    color: colors.LIGHT,
+    fontSize: 10,
+  },
+  newsCardTitle: {
+    fontFamily: 'NewYorkMedium-Bold',
+    color: colors.LIGHT,
+    fontSize: 16,
+    marginTop: 10,
+  },
+  newsCardTimestampContainer: {position: 'absolute', bottom: 10, left: 20},
+  newsCardTimestamp: {
+    fontFamily: 'Nunito-MediumItalic',
+    color: colors.LIGHT,
+    fontSize: 14,
+  },
 });
 
 export default styles;
