@@ -1,13 +1,17 @@
-import {useState} from 'react';
+import {FC, useState} from 'react';
 import {View, Text, TextInput, Image, FlatList} from 'react-native';
 import {protectedHttp} from 'src/helpers/HttpHelper';
 import Ionicon from 'react-native-vector-icons/Ionicons';
-import {colors} from 'src/constants';
+import {colors, routes} from 'src/constants';
 import {NotificationsImg} from 'src/assets/images/icons';
 import styles from 'src/styles/Common.styles';
 import debounce from 'lodash.debounce';
 
-const Topbar = () => {
+interface TopbarInterface {
+  navigation: any;
+}
+
+const Topbar: FC<TopbarInterface> = ({navigation}) => {
   const [titles, setTitles] = useState<any>([]);
 
   const searchNews = debounce(value => {
@@ -20,7 +24,7 @@ const Topbar = () => {
         .then(res => {
           let arr: any = [];
           res.data.articles.map((article: any) => {
-            arr.push(article.title);
+            arr.push(article);
           });
           setTitles(arr);
         });
@@ -64,7 +68,13 @@ const Topbar = () => {
             return (
               <>
                 <View style={{padding: 5}}>
-                  <Text style={{color: colors.DARK}}>{item}</Text>
+                  <Text
+                    onPress={() =>
+                      navigation.navigate(routes.NEWS_DETAIL, {article: item})
+                    }
+                    style={{color: colors.DARK}}>
+                    {item.title}
+                  </Text>
                 </View>
                 {index !== 4 && (
                   <View style={styles.searchListHorizontalLine} />

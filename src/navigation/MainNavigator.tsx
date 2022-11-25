@@ -1,5 +1,5 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {Home, Favourites, Profile} from 'src/screens/main';
+import {Favourites, Profile} from 'src/screens/main';
 import routes from 'src/constants/routes';
 import {
   HomeSVG,
@@ -9,6 +9,7 @@ import {
   ProfileSVG,
   ProfileActiveSVG,
 } from 'src/assets/images/icons';
+import HomeNavigator from './HomeNavigator';
 
 const Tab = createBottomTabNavigator();
 
@@ -34,8 +35,8 @@ const MainNavigator = () => {
         tabBarActiveTintColor: '#000',
       }}>
       <Tab.Screen
-        name={routes.HOME}
-        component={Home}
+        name={routes.HOME_NAVIGATOR}
+        component={HomeNavigator}
         options={{
           tabBarIcon: ({focused, color, size}) => {
             return focused ? (

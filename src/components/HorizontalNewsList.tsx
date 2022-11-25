@@ -1,13 +1,17 @@
 import {FC} from 'react';
 import {ActivityIndicator, FlatList} from 'react-native';
-import {colors} from 'src/constants';
+import {colors, routes} from 'src/constants';
 import NewsCard from './NewsCard';
 
 interface HorizontalNewsListInterface {
   articles: any;
+  navigation: any;
 }
 
-const HorizontalNewsList: FC<HorizontalNewsListInterface> = ({articles}) => {
+const HorizontalNewsList: FC<HorizontalNewsListInterface> = ({
+  articles,
+  navigation,
+}) => {
   return articles.length > 0 ? (
     <FlatList
       showsHorizontalScrollIndicator={false}
@@ -19,6 +23,9 @@ const HorizontalNewsList: FC<HorizontalNewsListInterface> = ({articles}) => {
           title={item.title}
           publishedAt={item.publishedAt}
           urlToImage={item.urlToImage}
+          handler={() =>
+            navigation.navigate(routes.NEWS_DETAIL, {article: item})
+          }
         />
       )}
       keyExtractor={item => item.title}

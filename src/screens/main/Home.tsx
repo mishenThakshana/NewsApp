@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import {FC, useEffect, useState} from 'react';
 import {SafeAreaView, View} from 'react-native';
 import {
   HorizontalNewsList,
@@ -20,7 +20,11 @@ const labels = [
   'General',
 ];
 
-const Home = () => {
+interface HomeInterface {
+  navigation: any;
+}
+
+const Home: FC<HomeInterface> = ({navigation}) => {
   const [articles, setArticles] = useState<any>([]);
   const [categoryArticles, setCategoryArticles] = useState<any>([]);
   const [activeFilter, setActiveFilter] = useState<string>(labels[0]);
@@ -65,10 +69,12 @@ const Home = () => {
   return (
     <SafeAreaView style={styles.rootContainer}>
       <View style={{margin: 20}}>
-        <Topbar />
+        <Topbar navigation={navigation} />
         <SectionTitle title="Breaking News" />
         {/* Breaking News */}
-        {articles && <HorizontalNewsList articles={articles} />}
+        {articles && (
+          <HorizontalNewsList navigation={navigation} articles={articles} />
+        )}
         {/* Category news */}
         <FilterBtnList
           activeFilter={activeFilter}
@@ -77,6 +83,7 @@ const Home = () => {
         />
         {categoryArticles && (
           <VerticalNewsList
+            navigation={navigation}
             articles={categoryArticles}
             onEndReachedHandler={loadMoreCategoryNews}
           />
