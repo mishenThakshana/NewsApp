@@ -5,9 +5,13 @@ import NewsCard2 from './NewsCard2';
 
 interface VerticalNewsListInterface {
   articles: any;
+  onEndReachedHandler?: () => void;
 }
 
-const VerticalNewsList: FC<VerticalNewsListInterface> = ({articles}) => {
+const VerticalNewsList: FC<VerticalNewsListInterface> = ({
+  articles,
+  onEndReachedHandler,
+}) => {
   const {height} = useWindowDimensions();
   return articles.length > 0 ? (
     <FlatList
@@ -23,6 +27,8 @@ const VerticalNewsList: FC<VerticalNewsListInterface> = ({articles}) => {
         />
       )}
       keyExtractor={item => item.title}
+      onEndReachedThreshold={0}
+      onEndReached={onEndReachedHandler}
     />
   ) : (
     <ActivityIndicator color={colors.PRIMARY} size={33} />

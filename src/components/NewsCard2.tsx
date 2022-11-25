@@ -13,11 +13,11 @@ export interface NewsCard2Interface {
 }
 
 const NewsCard2: FC<NewsCard2Interface> = article => {
-  const {width} = useWindowDimensions();
+  const {width, height} = useWindowDimensions();
   return (
     <View style={{alignItems: 'center', marginBottom: 5}}>
       <ImageBackground
-        style={{width: width * 0.9, height: 150}}
+        style={{width: width * 0.9, height: height * 0.175}}
         imageStyle={{borderRadius: 10}}
         source={{uri: article.urlToImage}}
         resizeMode="contain">

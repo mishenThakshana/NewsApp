@@ -1,6 +1,6 @@
 import {formatDistance} from 'date-fns';
 import {FC} from 'react';
-import {View, Text, ImageBackground} from 'react-native';
+import {View, Text, ImageBackground, useWindowDimensions} from 'react-native';
 import {firstLetterCapital} from 'src/helpers/FunctionHelper';
 import styles from 'src/styles/Common.styles';
 
@@ -12,10 +12,11 @@ export interface NewsCardInterface {
 }
 
 const NewsCard: FC<NewsCardInterface> = article => {
+  const {width, height} = useWindowDimensions();
   return (
     <View style={{marginRight: 5}}>
       <ImageBackground
-        style={{width: 350, height: 280}}
+        style={{width: width * 0.8, height: height * 0.3}}
         imageStyle={{borderRadius: 10}}
         source={{uri: article.urlToImage}}
         resizeMode="contain">
