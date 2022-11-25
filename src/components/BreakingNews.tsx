@@ -1,5 +1,6 @@
 import {FC} from 'react';
-import {FlatList} from 'react-native';
+import {ActivityIndicator, FlatList} from 'react-native';
+import {colors} from 'src/constants';
 import NewsCard from './NewsCard';
 
 interface BreakingNewsInterface {
@@ -7,7 +8,7 @@ interface BreakingNewsInterface {
 }
 
 const BreakingNews: FC<BreakingNewsInterface> = ({articles}) => {
-  return (
+  return articles.length > 0 ? (
     <FlatList
       showsHorizontalScrollIndicator={false}
       horizontal
@@ -22,6 +23,8 @@ const BreakingNews: FC<BreakingNewsInterface> = ({articles}) => {
       )}
       keyExtractor={item => item.title}
     />
+  ) : (
+    <ActivityIndicator color={colors.PRIMARY} size={33} />
   );
 };
 

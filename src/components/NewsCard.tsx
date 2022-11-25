@@ -20,9 +20,11 @@ const NewsCard: FC<NewsCardInterface> = article => {
         source={{uri: article.urlToImage}}
         resizeMode="contain">
         <View style={styles.newsCardContainer}>
-          <View>
-            <Text style={styles.newsCardAuthorText}>by {article.author}</Text>
-          </View>
+          {article.author && (
+            <View>
+              <Text style={styles.newsCardAuthorText}>by {article.author}</Text>
+            </View>
+          )}
           <View>
             <Text style={styles.newsCardTitle}>{article.title}</Text>
           </View>
