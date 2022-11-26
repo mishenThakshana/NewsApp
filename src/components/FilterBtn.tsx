@@ -1,5 +1,5 @@
 import {FC} from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import {View, Text, TouchableOpacity, Pressable} from 'react-native';
 import {colors} from 'src/constants';
 import styles from 'src/styles/Common.styles';
 
@@ -11,7 +11,7 @@ interface FilterBtnInterface {
 
 const FilterBtn: FC<FilterBtnInterface> = ({label, handler, active}) => {
   return (
-    <TouchableOpacity onPress={handler}>
+    <Pressable onPress={handler}>
       <View
         style={[
           active ? styles.filterActive : styles.filterInactive,
@@ -25,7 +25,7 @@ const FilterBtn: FC<FilterBtnInterface> = ({label, handler, active}) => {
           {label}
         </Text>
       </View>
-    </TouchableOpacity>
+    </Pressable>
   );
 };
 

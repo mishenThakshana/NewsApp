@@ -7,6 +7,6 @@ export const protectedHttp = axios.create({
   headers: {
     'Content-type': 'application/json',
     Accept: 'application/json',
-    Authorization: 'ed7b937607c74dcc8903b67b196d0ab3',
+    Authorization: '2e9c2023131d4814936e54722175bcea',
   },
 });

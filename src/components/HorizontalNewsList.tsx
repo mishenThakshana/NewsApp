@@ -29,6 +29,7 @@ const HorizontalNewsList: FC<HorizontalNewsListInterface> = ({
         />
       )}
       keyExtractor={item => item.title}
+      initialNumToRender={5}
     />
   ) : (
     <ActivityIndicator color={colors.PRIMARY} size={33} />

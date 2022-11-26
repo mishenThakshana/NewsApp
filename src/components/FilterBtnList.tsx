@@ -14,16 +14,20 @@ const FilterBtnList: FC<FilterBtnListInterface> = ({
   activeFilter,
 }) => {
   return (
-    <ScrollView horizontal>
-      {labels.map((label: any) => (
+    <FlatList
+      showsHorizontalScrollIndicator={false}
+      horizontal
+      data={labels}
+      renderItem={({item}) => (
         <FilterBtn
-          key={label}
-          active={activeFilter === label && true}
-          handler={() => setActiveFilter(label)}
-          label={label}
+          active={activeFilter === item && true}
+          handler={() => setActiveFilter(item)}
+          label={item}
         />
-      ))}
-    </ScrollView>
+      )}
+      keyExtractor={item => item}
+      initialNumToRender={5}
+    />
   );
 };
 

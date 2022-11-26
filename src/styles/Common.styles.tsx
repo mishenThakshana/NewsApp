@@ -243,6 +243,36 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
+  bottomSheetContainer: {
+    height: '40%',
+    marginTop: 'auto',
+    backgroundColor: colors.LIGHT,
+    elevation: 10,
+    padding: 20,
+    borderWidth: 1,
+    borderColor: 'rgba(0,0,0, 0.1)',
+    borderTopEndRadius: 16,
+    borderTopStartRadius: 16,
+  },
+  notFoundContainer: {
+    alignItems: 'center',
+    marginTop: 10,
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  notFoundLabel: {
+    marginLeft: 10,
+    fontFamily: 'Nunito-Bold',
+    color: '#A9A9A9',
+    fontSize: 24,
+  },
+  filterBtnContainer: {
+    backgroundColor: colors.PRIMARY,
+    padding: 10,
+    alignItems: 'center',
+    borderRadius: 20,
+  },
+  filterBtnSm: {fontFamily: 'Nunito-Bold', color: colors.LIGHT},
 });
 
 export default styles;
