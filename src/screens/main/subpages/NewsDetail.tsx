@@ -12,6 +12,7 @@ import styles from 'src/styles/Common.styles';
 import MaterialIcon from 'react-native-vector-icons/Ionicons';
 import {firstLetterCapital} from 'src/helpers/FunctionHelper';
 import {formatDistance} from 'date-fns';
+import FastImage from 'react-native-fast-image';
 
 interface NewsDetailInterface {
   navigation: any;
@@ -36,10 +37,10 @@ const NewsDetail: FC<NewsDetailInterface> = ({navigation, route}) => {
         </TouchableOpacity>
       </View>
       {/* Image */}
-      <Image
+      <FastImage
         style={{position: 'absolute', width, height: height * 0.4}}
         source={{uri: article.urlToImage}}
-        resizeMode="cover"
+        resizeMode={FastImage.resizeMode.cover}
       />
       {/* Shadow Box Container*/}
       <View style={[styles.newsDetailShadowBoxContainer, {width}]}>
