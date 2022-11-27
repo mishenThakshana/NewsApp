@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import {firstLetterCapital} from 'src/helpers/FunctionHelper';
 import styles from 'src/styles/Common.styles';
+import FastImage from 'react-native-fast-image';
 
 export interface NewsCard2Interface {
   author: string;
@@ -23,11 +24,10 @@ const NewsCard2: FC<NewsCard2Interface> = article => {
   return (
     <TouchableOpacity onPress={article.handler}>
       <View style={{alignItems: 'center', marginBottom: 5}}>
-        <ImageBackground
-          style={{width: width * 0.9, height: height * 0.175}}
-          imageStyle={{borderRadius: 10}}
+        <FastImage
+          style={{width: width * 0.9, height: height * 0.175, borderRadius: 10}}
           source={{uri: article.urlToImage}}
-          resizeMode="contain">
+          resizeMode={FastImage.resizeMode.cover}>
           <View style={styles.newsCard2Container}>
             <View>
               <Text style={styles.newsCard2Title}>{article.title}</Text>
@@ -45,7 +45,7 @@ const NewsCard2: FC<NewsCard2Interface> = article => {
               </View>
             </View>
           </View>
-        </ImageBackground>
+        </FastImage>
       </View>
     </TouchableOpacity>
   );

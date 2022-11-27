@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {createContext, FC, ReactNode, useEffect, useState} from 'react';
+import SplashScreen from 'react-native-splash-screen';
 
 export const UserContext = createContext({});
 
@@ -17,6 +18,7 @@ export const UserProvider: FC<UserProviderChildren> = ({children}) => {
         setUser(JSON.parse(existingUser));
         setAuthenticated(true);
       }
+      SplashScreen.hide();
     });
   };
 

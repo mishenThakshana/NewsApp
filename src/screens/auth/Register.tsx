@@ -42,7 +42,7 @@ const Register: FC<RegisterInterface> = ({navigation}) => {
         } else {
           AsyncStorage.setItem(
             'app_users',
-            JSON.stringify([...existingUsers, {username, email}]),
+            JSON.stringify([...existingUsers, {username, email, password}]),
           );
           //Setting the current logged in user
           AsyncStorage.setItem(

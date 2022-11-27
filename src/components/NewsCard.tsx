@@ -1,14 +1,9 @@
 import {FC} from 'react';
-import {
-  View,
-  Text,
-  ImageBackground,
-  useWindowDimensions,
-  TouchableOpacity,
-} from 'react-native';
+import {View, Text, useWindowDimensions, TouchableOpacity} from 'react-native';
 import {formatDistance} from 'date-fns';
 import {firstLetterCapital} from 'src/helpers/FunctionHelper';
 import styles from 'src/styles/Common.styles';
+import FastImage from 'react-native-fast-image';
 
 export interface NewsCardInterface {
   author: string;
@@ -23,11 +18,10 @@ const NewsCard: FC<NewsCardInterface> = article => {
   return (
     <TouchableOpacity onPress={article.handler}>
       <View style={{marginRight: 5}}>
-        <ImageBackground
-          style={{width: width * 0.8, height: height * 0.3}}
-          imageStyle={{borderRadius: 10}}
+        <FastImage
+          style={{width: width * 0.8, height: height * 0.3, borderRadius: 10}}
           source={{uri: article.urlToImage}}
-          resizeMode="contain">
+          resizeMode={FastImage.resizeMode.cover}>
           <View style={styles.newsCardContainer}>
             {article.author && (
               <View>
@@ -47,7 +41,7 @@ const NewsCard: FC<NewsCardInterface> = article => {
               </Text>
             </View>
           </View>
-        </ImageBackground>
+        </FastImage>
       </View>
     </TouchableOpacity>
   );
