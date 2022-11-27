@@ -1,5 +1,5 @@
 import {FC, useContext, useEffect, useState} from 'react';
-import {View, SafeAreaView, useWindowDimensions} from 'react-native';
+import {View, SafeAreaView, useWindowDimensions, Keyboard} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AlreadyText, Btn, InputGroup, Title} from 'src/components';
 import {colors, routes} from 'src/constants';
@@ -46,7 +46,7 @@ const Login: FC<LoginInterface> = ({navigation}) => {
           if (existingUser.password === password) {
             //Setting the current logged in user
             AsyncStorage.setItem('app_user', JSON.stringify({email, password}));
-            setUser({email, password});
+            setUser({email, username: existingUser.username});
             setAuthenticated(true);
             setEmail('');
             setPassword('');
@@ -61,6 +61,7 @@ const Login: FC<LoginInterface> = ({navigation}) => {
         setLoading(false);
       });
     }, 3000);
+    Keyboard.dismiss();
   };
 
   return (

@@ -1,5 +1,5 @@
 import {FC, useContext, useEffect, useState} from 'react';
-import {View, SafeAreaView, useWindowDimensions} from 'react-native';
+import {View, SafeAreaView, useWindowDimensions, Keyboard} from 'react-native';
 import {UserContext} from 'src/context/UserContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AlreadyText, Btn, InputGroup, Title} from 'src/components';
@@ -42,7 +42,7 @@ const Register: FC<RegisterInterface> = ({navigation}) => {
         } else {
           AsyncStorage.setItem(
             'app_users',
-            JSON.stringify([...existingUsers, {username, email, password}]),
+            JSON.stringify([...existingUsers, {username, email}]),
           );
           //Setting the current logged in user
           AsyncStorage.setItem(
@@ -58,6 +58,7 @@ const Register: FC<RegisterInterface> = ({navigation}) => {
         setLoading(false);
       });
     }, 3000);
+    Keyboard.dismiss();
   };
 
   useEffect(() => {

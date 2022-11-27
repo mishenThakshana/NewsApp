@@ -1,5 +1,5 @@
 import {FC} from 'react';
-import {View, Text, TouchableOpacity, Pressable} from 'react-native';
+import {View, Text, Pressable} from 'react-native';
 import {colors} from 'src/constants';
 import styles from 'src/styles/Common.styles';
 

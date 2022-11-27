@@ -7,7 +7,6 @@ import {
   useWindowDimensions,
   TouchableOpacity,
 } from 'react-native';
-import {colors} from 'src/constants';
 import {firstLetterCapital} from 'src/helpers/FunctionHelper';
 import styles from 'src/styles/Common.styles';
 

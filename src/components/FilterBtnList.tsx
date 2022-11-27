@@ -1,5 +1,5 @@
 import {FC} from 'react';
-import {FlatList, ScrollView, View} from 'react-native';
+import {FlatList, View} from 'react-native';
 import FilterBtn from './FilterBtn';
 
 interface FilterBtnListInterface {

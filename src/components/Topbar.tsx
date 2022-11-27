@@ -1,4 +1,4 @@
-import {FC, useState} from 'react';
+import {FC, useRef, useState} from 'react';
 import {
   View,
   Text,
@@ -6,6 +6,7 @@ import {
   Image,
   FlatList,
   ActivityIndicator,
+  Keyboard,
 } from 'react-native';
 import {protectedHttp} from 'src/helpers/HttpHelper';
 import Ionicon from 'react-native-vector-icons/Ionicons';
@@ -21,14 +22,19 @@ interface TopbarInterface {
 const Topbar: FC<TopbarInterface> = ({navigation}) => {
   const [titles, setTitles] = useState<any>([]);
   const [loading, setLoading] = useState<boolean>(false);
+  const [textContained, setTextContained] = useState<boolean>(false);
+  const inpRef = useRef<TextInput>(null);
 
   const searchNews = debounce(value => {
     setLoading(true);
     if (value == '') {
       setTitles([]);
       setLoading(false);
+      setTextContained(false);
+      Keyboard.dismiss();
       return;
     } else {
+      setTextContained(true);
       protectedHttp
         .get(`/everything?searchIn=title&q=${value}&from=2022-11-23&pageSize=5`)
         .then(res => {
@@ -49,6 +55,7 @@ const Topbar: FC<TopbarInterface> = ({navigation}) => {
         <View style={styles.topBarSearchBar}>
           <View>
             <TextInput
+              ref={inpRef}
               onChangeText={searchNews}
               placeholder="Dogecoin to the moon..."
               placeholderTextColor="rgba(0, 0, 0, 0.2)"
@@ -59,6 +66,18 @@ const Topbar: FC<TopbarInterface> = ({navigation}) => {
           <View>
             {loading ? (
               <ActivityIndicator color={colors.PRIMARY} size={24} />
+            ) : textContained ? (
+              <Ionicon
+                onPress={() => {
+                  setTitles([]);
+                  inpRef.current?.clear();
+                  setTextContained(false);
+                  Keyboard.dismiss();
+                }}
+                name="ios-close-outline"
+                color="#A9A9A9"
+                size={22}
+              />
             ) : (
               <Ionicon name="ios-search-outline" color="#A9A9A9" size={22} />
             )}
