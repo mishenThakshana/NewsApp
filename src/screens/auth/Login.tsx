@@ -45,7 +45,14 @@ const Login: FC<LoginInterface> = ({navigation}) => {
         if (existingUser) {
           if (existingUser.password === password) {
             //Setting the current logged in user
-            AsyncStorage.setItem('app_user', JSON.stringify({email, password}));
+            AsyncStorage.setItem(
+              'app_user',
+              JSON.stringify({
+                email,
+                username: existingUser.username,
+                password,
+              }),
+            );
             setUser({email, username: existingUser.username});
             setAuthenticated(true);
             setEmail('');
