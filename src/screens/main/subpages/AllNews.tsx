@@ -1,25 +1,20 @@
 import {FC, useEffect, useState} from 'react';
-import {SafeAreaView, View} from 'react-native';
+import {View, SafeAreaView} from 'react-native';
 import {
-  HorizontalNewsList,
-  VerticalNewsList,
-  SectionTitle,
-  Topbar,
   FilterBtnList,
-  TitleWithFilter,
   FilterModal,
+  TitleWithFilter,
+  VerticalNewsList,
 } from 'src/components';
+import {categories, countries, languages} from 'src/data/data';
 import {protectedHttp} from 'src/helpers/HttpHelper';
 import styles from 'src/styles/Common.styles';
-import {categories, languages, countries} from 'src/data/data';
-import {routes} from 'src/constants';
 
-interface HomeInterface {
+interface AllNewsInterface {
   navigation: any;
 }
 
-const Home: FC<HomeInterface> = ({navigation}) => {
-  const [articles, setArticles] = useState<any>([]);
+const AllNews: FC<AllNewsInterface> = ({navigation}) => {
   const [categoryArticles, setCategoryArticles] = useState<any>([]);
   const [activeCategory, setActiveCategory] = useState<string>(categories[0]);
   const [activeLanguage, setActiveLanguage] = useState<string>(languages[2]);
@@ -29,24 +24,12 @@ const Home: FC<HomeInterface> = ({navigation}) => {
   // loaders
   const [loadingCategoryNews, setLoadingCategoryNews] =
     useState<boolean>(false);
-  const [loadingBreakingNews, setLoadingBreakingNews] =
-    useState<boolean>(false);
-
-  const getBreakingNews = () => {
-    setLoadingBreakingNews(true);
-    protectedHttp
-      .get('/top-headlines?country=us&pageSize=5')
-      .then(res => {
-        setArticles(res.data.articles);
-      })
-      .finally(() => setLoadingBreakingNews(false));
-  };
 
   const getCategoryNews = () => {
     categoryPage < 2 && setLoadingCategoryNews(true);
     protectedHttp
       .get(
-        `/top-headlines?country=${activeCountry}&language=${activeLanguage}&category=${activeCategory}&pageSize=5&page=${categoryPage}`,
+        `/top-headlines?country=${activeCountry}&language=${activeLanguage}&category=${activeCategory}&pageSize=10&page=${categoryPage}`,
       )
       .then(res => {
         if (categoryPage > 1) {
@@ -58,10 +41,6 @@ const Home: FC<HomeInterface> = ({navigation}) => {
       })
       .finally(() => setLoadingCategoryNews(false));
   };
-
-  useEffect(() => {
-    getBreakingNews();
-  }, []);
 
   useEffect(() => {
     getCategoryNews();
@@ -77,30 +56,14 @@ const Home: FC<HomeInterface> = ({navigation}) => {
   };
 
   return (
-    <SafeAreaView
-      style={[
-        styles.rootContainer,
-        modalVisible && {opacity: 0.5, backgroundColor: 'rgba(0,0,0,0)'},
-      ]}>
+    <SafeAreaView style={styles.rootContainer}>
       <View style={{margin: 20}}>
-        <Topbar navigation={navigation} />
-        <SectionTitle
-          handler={() => navigation.navigate(routes.ALL_NEWS)}
-          title="Breaking News"
-        />
-        {/* Breaking News */}
-        {articles && (
-          <HorizontalNewsList
-            loading={loadingBreakingNews}
-            navigation={navigation}
-            articles={articles}
-          />
-        )}
-        {/* Category news */}
         {/* Filter */}
         <TitleWithFilter
+          navigation={navigation}
           handler={() => setModalVisible(!modalVisible)}
-          title="Top News"
+          title="All News"
+          backEnabled
         />
         {/* Categories */}
         <FilterBtnList
@@ -130,4 +93,4 @@ const Home: FC<HomeInterface> = ({navigation}) => {
   );
 };
 
-export default Home;
+export default AllNews;

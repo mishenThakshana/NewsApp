@@ -8,3 +8,4 @@ export {default as HorizontalNewsList} from './HorizontalNewsList';
 export {default as VerticalNewsList} from './VerticalNewsList';
 export {default as FilterBtnList} from './FilterBtnList';
 export {default as TitleWithFilter} from './TitleWithFilter';
+export {default as FilterModal} from './FilterModal';

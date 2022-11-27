@@ -1,5 +1,5 @@
 import {FC} from 'react';
-import {FlatList, ScrollView} from 'react-native';
+import {FlatList, ScrollView, View} from 'react-native';
 import FilterBtn from './FilterBtn';
 
 interface FilterBtnListInterface {
@@ -14,20 +14,22 @@ const FilterBtnList: FC<FilterBtnListInterface> = ({
   activeFilter,
 }) => {
   return (
-    <FlatList
-      showsHorizontalScrollIndicator={false}
-      horizontal
-      data={labels}
-      renderItem={({item}) => (
-        <FilterBtn
-          active={activeFilter === item && true}
-          handler={() => setActiveFilter(item)}
-          label={item}
-        />
-      )}
-      keyExtractor={item => item}
-      initialNumToRender={5}
-    />
+    <View>
+      <FlatList
+        showsHorizontalScrollIndicator={false}
+        horizontal
+        data={labels}
+        renderItem={({item}) => (
+          <FilterBtn
+            active={activeFilter === item && true}
+            handler={() => setActiveFilter(item)}
+            label={item}
+          />
+        )}
+        keyExtractor={item => item}
+        initialNumToRender={5}
+      />
+    </View>
   );
 };
 

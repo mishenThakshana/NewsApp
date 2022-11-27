@@ -273,6 +273,11 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
   filterBtnSm: {fontFamily: 'Nunito-Bold', color: colors.LIGHT},
+  filterByLabel: {
+    fontFamily: 'Nunito-Bold',
+    color: '#000',
+    fontSize: 16,
+  },
 });
 
 export default styles;

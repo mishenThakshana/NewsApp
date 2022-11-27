@@ -2,7 +2,7 @@ import {getFocusedRouteNameFromRoute} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {FC, useLayoutEffect} from 'react';
 import {routes} from 'src/constants';
-import {Home, NewsDetail} from 'src/screens/main';
+import {AllNews, Home, NewsDetail} from 'src/screens/main';
 import styles from 'src/styles/Common.styles';
 
 const Stack = createNativeStackNavigator();
@@ -27,6 +27,7 @@ const HomeNavigator: FC<HomeNavigatorInterface> = ({navigation, route}) => {
     <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen name={routes.HOME} component={Home} />
       <Stack.Screen name={routes.NEWS_DETAIL} component={NewsDetail} />
+      <Stack.Screen name={routes.ALL_NEWS} component={AllNews} />
     </Stack.Navigator>
   );
 };

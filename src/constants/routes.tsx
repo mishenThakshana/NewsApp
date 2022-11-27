@@ -6,4 +6,5 @@ export default {
   NEWS_DETAIL: 'NewsDetail',
   FAVOURITES: 'Favourites',
   PROFILE: 'Profile',
+  ALL_NEWS: 'All News',
 };

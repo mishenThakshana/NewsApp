@@ -1,11 +1,5 @@
 import {FC} from 'react';
-import {
-  ActivityIndicator,
-  FlatList,
-  useWindowDimensions,
-  Text,
-  View,
-} from 'react-native';
+import {ActivityIndicator, FlatList, Text, View} from 'react-native';
 import {colors, routes} from 'src/constants';
 import NewsCard2 from './NewsCard2';
 import Ionicon from 'react-native-vector-icons/Ionicons';
@@ -24,30 +18,29 @@ const VerticalNewsList: FC<VerticalNewsListInterface> = ({
   navigation,
   loading,
 }) => {
-  const {height} = useWindowDimensions();
-
   return !loading ? (
     articles.length > 0 ? (
-      <FlatList
-        showsVerticalScrollIndicator={false}
-        data={articles}
-        style={{height: height * 0.45}}
-        renderItem={({item}) => (
-          <NewsCard2
-            handler={() =>
-              navigation.navigate(routes.NEWS_DETAIL, {article: item})
-            }
-            author={item.author}
-            title={item.title}
-            publishedAt={item.publishedAt}
-            urlToImage={item.urlToImage}
-          />
-        )}
-        keyExtractor={item => item.title}
-        onEndReachedThreshold={0}
-        onEndReached={onEndReachedHandler}
-        initialNumToRender={5}
-      />
+      <View>
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          data={articles}
+          renderItem={({item}) => (
+            <NewsCard2
+              handler={() =>
+                navigation.navigate(routes.NEWS_DETAIL, {article: item})
+              }
+              author={item.author}
+              title={item.title}
+              publishedAt={item.publishedAt}
+              urlToImage={item.urlToImage}
+            />
+          )}
+          keyExtractor={item => item.title}
+          onEndReachedThreshold={0}
+          onEndReached={onEndReachedHandler}
+          initialNumToRender={5}
+        />
+      </View>
     ) : (
       <View style={styles.notFoundContainer}>
         <Ionicon name="ios-eye-off-outline" size={26} color="#A9A9A9" />

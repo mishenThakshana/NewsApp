@@ -30,7 +30,7 @@ const Topbar: FC<TopbarInterface> = ({navigation}) => {
       return;
     } else {
       protectedHttp
-        .get(`/everything?searchIn=title&q=${value}&from=2022-10-25&pageSize=5`)
+        .get(`/everything?searchIn=title&q=${value}&from=2022-11-23&pageSize=5`)
         .then(res => {
           let arr: any = [];
           res.data.articles.map((article: any) => {

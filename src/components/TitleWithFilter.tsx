@@ -7,11 +7,26 @@ import styles from 'src/styles/Common.styles';
 interface TitleWithFilterInterface {
   title: string;
   handler?: () => void;
+  backEnabled?: boolean;
+  navigation?: any;
 }
 
-const TitleWithFilter: FC<TitleWithFilterInterface> = ({title, handler}) => {
+const TitleWithFilter: FC<TitleWithFilterInterface> = ({
+  title,
+  handler,
+  backEnabled,
+  navigation,
+}) => {
   return (
-    <View style={styles.titleWithFitlerContainer}>
+    <View
+      style={[styles.titleWithFitlerContainer, backEnabled && {marginTop: 5}]}>
+      {backEnabled && (
+        <View>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <Ionicon name="ios-arrow-back" color={colors.SECONDARY} size={25} />
+          </TouchableOpacity>
+        </View>
+      )}
       <View>
         <Text style={styles.sectionTitle}>{title}</Text>
       </View>
