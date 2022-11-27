@@ -262,9 +262,9 @@ const styles = StyleSheet.create({
   },
   notFoundLabel: {
     marginLeft: 10,
-    fontFamily: 'Nunito-Bold',
+    fontFamily: 'Nunito-Regular',
     color: '#A9A9A9',
-    fontSize: 24,
+    fontSize: 20,
   },
   filterBtnContainer: {
     backgroundColor: colors.PRIMARY,

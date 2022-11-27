@@ -12,7 +12,8 @@ import {
 import {protectedHttp} from 'src/helpers/HttpHelper';
 import styles from 'src/styles/Common.styles';
 import {categories, languages, countries} from 'src/data/data';
-import {routes} from 'src/constants';
+import {colors, routes} from 'src/constants';
+import AwesomeAlert from 'react-native-awesome-alerts';
 
 interface HomeInterface {
   navigation: any;
@@ -31,6 +32,9 @@ const Home: FC<HomeInterface> = ({navigation}) => {
     useState<boolean>(false);
   const [loadingBreakingNews, setLoadingBreakingNews] =
     useState<boolean>(false);
+  // Error handling
+  const [errorAlert, setErrorAlert] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string>('');
 
   const getBreakingNews = () => {
     setLoadingBreakingNews(true);
@@ -38,6 +42,10 @@ const Home: FC<HomeInterface> = ({navigation}) => {
       .get('/top-headlines?country=us&pageSize=5')
       .then(res => {
         setArticles(res.data.articles);
+      })
+      .catch(error => {
+        setErrorAlert(true);
+        setErrorMessage(error.response.data.message);
       })
       .finally(() => setLoadingBreakingNews(false));
   };
@@ -55,6 +63,10 @@ const Home: FC<HomeInterface> = ({navigation}) => {
           setCategoryArticles([]);
           setCategoryArticles(res.data.articles);
         }
+      })
+      .catch(error => {
+        setErrorAlert(true);
+        setErrorMessage(error.response.data.message);
       })
       .finally(() => setLoadingCategoryNews(false));
   };
@@ -125,6 +137,22 @@ const Home: FC<HomeInterface> = ({navigation}) => {
         setActiveCountry={setActiveCountry}
         activeLang={activeLanguage}
         setActiveLang={setActiveLanguage}
+      />
+      {/* Error Alert */}
+      <AwesomeAlert
+        show={errorAlert}
+        showProgress={false}
+        title="Unexpetected Error"
+        message={errorMessage}
+        showCancelButton={false}
+        showConfirmButton={true}
+        closeOnTouchOutside={false}
+        closeOnHardwareBackPress={false}
+        confirmButtonColor={colors.PRIMARY}
+        onConfirmPressed={() => {
+          setErrorAlert(false);
+          setErrorMessage('');
+        }}
       />
     </SafeAreaView>
   );

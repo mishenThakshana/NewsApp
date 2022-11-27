@@ -1,11 +1,13 @@
 import {FC, useEffect, useState} from 'react';
 import {View, SafeAreaView} from 'react-native';
+import AwesomeAlert from 'react-native-awesome-alerts';
 import {
   FilterBtnList,
   FilterModal,
   TitleWithFilter,
   VerticalNewsList,
 } from 'src/components';
+import {colors} from 'src/constants';
 import {categories, countries, languages} from 'src/data/data';
 import {protectedHttp} from 'src/helpers/HttpHelper';
 import styles from 'src/styles/Common.styles';
@@ -24,6 +26,9 @@ const AllNews: FC<AllNewsInterface> = ({navigation}) => {
   // loaders
   const [loadingCategoryNews, setLoadingCategoryNews] =
     useState<boolean>(false);
+  // Error handling
+  const [errorAlert, setErrorAlert] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string>('');
 
   const getCategoryNews = () => {
     categoryPage < 2 && setLoadingCategoryNews(true);
@@ -38,6 +43,10 @@ const AllNews: FC<AllNewsInterface> = ({navigation}) => {
           setCategoryArticles([]);
           setCategoryArticles(res.data.articles);
         }
+      })
+      .catch(error => {
+        setErrorAlert(true);
+        setErrorMessage(error.response.data.message);
       })
       .finally(() => setLoadingCategoryNews(false));
   };
@@ -88,6 +97,22 @@ const AllNews: FC<AllNewsInterface> = ({navigation}) => {
         setActiveCountry={setActiveCountry}
         activeLang={activeLanguage}
         setActiveLang={setActiveLanguage}
+      />
+      {/* Error Alert */}
+      <AwesomeAlert
+        show={errorAlert}
+        showProgress={false}
+        title="Unexpetected Error"
+        message={errorMessage}
+        showCancelButton={false}
+        showConfirmButton={true}
+        closeOnTouchOutside={false}
+        closeOnHardwareBackPress={false}
+        confirmButtonColor={colors.PRIMARY}
+        onConfirmPressed={() => {
+          setErrorAlert(false);
+          setErrorMessage('');
+        }}
       />
     </SafeAreaView>
   );
