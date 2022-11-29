@@ -1,4 +1,4 @@
-import {FC, useEffect, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import {View, SafeAreaView} from 'react-native';
 import AwesomeAlert from 'react-native-awesome-alerts';
 import {

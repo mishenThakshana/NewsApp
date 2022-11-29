@@ -1,4 +1,4 @@
-import {FC, useEffect, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import {SafeAreaView, View} from 'react-native';
 import {
   HorizontalNewsList,

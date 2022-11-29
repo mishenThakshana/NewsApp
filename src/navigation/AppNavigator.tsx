@@ -1,9 +1,9 @@
+import React, {useContext} from 'react';
 import {StatusBar} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {colors} from 'src/constants';
 import AuthNavigator from './AuthNavigator';
 import MainNavigator from './MainNavigator';
-import {useContext, useEffect, useState} from 'react';
 import {UserContext} from 'src/context/UserContext';
 
 const AppNavigator = () => {

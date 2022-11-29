@@ -1,5 +1,5 @@
+import React, {useContext, useState} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {useContext, useState} from 'react';
 import {View, SafeAreaView, useWindowDimensions, Text} from 'react-native';
 import AwesomeAlert from 'react-native-awesome-alerts';
 import {Btn} from 'src/components';

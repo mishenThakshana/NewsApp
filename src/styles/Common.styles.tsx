@@ -4,10 +4,8 @@ import {colors} from 'src/constants';
 const styles = StyleSheet.create({
   tabBarStyle: {
     height: 60,
-    paddingTop: 5,
-    bottom: 25,
-    left: 20,
-    right: 20,
+    marginHorizontal: 20,
+    marginVertical: 20,
     position: 'absolute',
     elevation: 5,
     borderRadius: 32,
@@ -30,11 +28,12 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#A9A9A9',
     borderRadius: 20,
-    paddingHorizontal: 20,
+    height: 50,
     fontSize: 14,
     marginTop: 5,
     color: colors.DARK,
     fontFamily: 'Nunito-Regular',
+    padding: 15,
   },
   btnOuterContainer: {marginVertical: 15},
   btnContainer: {
@@ -76,7 +75,11 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: 20,
   },
-  topBarSearchBarInput: {fontFamily: 'Nunito-Regular', color: colors.DARK},
+  topBarSearchBarInput: {
+    fontFamily: 'Nunito-Regular',
+    color: colors.DARK,
+    height: 50,
+  },
   searchListContainer: {
     backgroundColor: '#fff',
     width: '80%',

@@ -1,4 +1,4 @@
-import {FC} from 'react';
+import React, {FC} from 'react';
 import {View, Text, useWindowDimensions, TouchableOpacity} from 'react-native';
 import {formatDistance} from 'date-fns';
 import {firstLetterCapital} from 'src/helpers/FunctionHelper';
