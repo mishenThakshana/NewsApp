@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Platform} from 'react-native';
 import {colors} from 'src/constants';
 
 const styles = StyleSheet.create({

@@ -1,6 +1,7 @@
 import React from 'react';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {Platform} from 'react-native';
 import {Favourites, Profile} from 'src/screens/main';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import routes from 'src/constants/routes';
 import {
   HomeSVG,
@@ -22,10 +23,11 @@ const MainNavigator = () => {
         headerShown: false,
         tabBarStyle: styles.tabBarStyle,
         tabBarLabelStyle: {
-          top: 20,
+          top: Platform.OS === 'ios' ? 20 : 0,
+          paddingVertical: 5,
           fontFamily: 'Nunito-Regular',
         },
-        tabBarIconStyle: {top: 10},
+        tabBarIconStyle: {top: Platform.OS === 'ios' ? 10 : 0}, //
         tabBarActiveTintColor: '#000',
       }}>
       <Tab.Screen

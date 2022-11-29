@@ -53,7 +53,7 @@ const Topbar: FC<TopbarInterface> = ({navigation}) => {
       <View style={styles.topBarContainer}>
         {/* Searchbar */}
         <View style={styles.topBarSearchBar}>
-          <View>
+          <View style={{flex: 1}}>
             <TextInput
               ref={inpRef}
               onChangeText={searchNews}
