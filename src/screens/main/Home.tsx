@@ -28,8 +28,6 @@ const Home: FC<HomeInterface> = ({navigation}) => {
   const [categoryPage, setCategoryPage] = useState<number>(1);
   const [modalVisible, setModalVisible] = useState(false);
   // loaders
-  const [loadingCategoryNews, setLoadingCategoryNews] =
-    useState<boolean>(false);
   const [loadingBreakingNews, setLoadingBreakingNews] =
     useState<boolean>(false);
   // Error handling
@@ -51,7 +49,6 @@ const Home: FC<HomeInterface> = ({navigation}) => {
   };
 
   const getCategoryNews = () => {
-    categoryPage < 2 && setLoadingCategoryNews(true);
     protectedHttp
       .get(
         `/top-headlines?country=${activeCountry}&language=${activeLanguage}&category=${activeCategory}&pageSize=5&page=${categoryPage}`,
@@ -67,8 +64,7 @@ const Home: FC<HomeInterface> = ({navigation}) => {
       .catch(error => {
         setErrorAlert(true);
         setErrorMessage(error.response.data.message);
-      })
-      .finally(() => setLoadingCategoryNews(false));
+      });
   };
 
   useEffect(() => {
@@ -129,11 +125,10 @@ const Home: FC<HomeInterface> = ({navigation}) => {
       <View style={{margin: 20}}>
         {categoryArticles && (
           <VerticalNewsList
-            loading={loadingCategoryNews}
             navigation={navigation}
             articles={categoryArticles}
             onEndReachedHandler={loadMoreCategoryNews}
-            headerComponent={() => <HeaderComponent />}
+            HeaderComponent={() => <HeaderComponent />}
           />
         )}
       </View>

@@ -9,49 +9,46 @@ interface VerticalNewsListInterface {
   articles: any;
   onEndReachedHandler?: () => void;
   navigation: any;
-  loading: boolean;
-  headerComponent?: any;
+  HeaderComponent?: any;
 }
 
 const VerticalNewsList: FC<VerticalNewsListInterface> = ({
   articles,
   onEndReachedHandler,
   navigation,
-  loading,
-  headerComponent,
+  HeaderComponent,
 }) => {
-  return !loading ? (
-    articles.length > 0 ? (
-      <View>
-        <FlatList
-          showsVerticalScrollIndicator={false}
-          data={articles}
-          renderItem={({item}) => (
-            <NewsCard2
-              handler={() =>
-                navigation.navigate(routes.NEWS_DETAIL, {article: item})
-              }
-              author={item.author}
-              title={item.title}
-              publishedAt={item.publishedAt}
-              urlToImage={item.urlToImage}
-            />
-          )}
-          keyExtractor={item => item.title}
-          onEndReachedThreshold={0}
-          onEndReached={onEndReachedHandler}
-          initialNumToRender={5}
-          ListHeaderComponent={headerComponent}
-        />
-      </View>
-    ) : (
+  return articles.length > 0 ? (
+    <View>
+      <FlatList
+        showsVerticalScrollIndicator={false}
+        data={articles}
+        renderItem={({item}) => (
+          <NewsCard2
+            handler={() =>
+              navigation.navigate(routes.NEWS_DETAIL, {article: item})
+            }
+            author={item.author}
+            title={item.title}
+            publishedAt={item.publishedAt}
+            urlToImage={item.urlToImage}
+          />
+        )}
+        keyExtractor={item => item.title}
+        onEndReachedThreshold={0}
+        onEndReached={onEndReachedHandler}
+        initialNumToRender={5}
+        ListHeaderComponent={HeaderComponent}
+      />
+    </View>
+  ) : (
+    <>
+      <HeaderComponent />
       <View style={styles.notFoundContainer}>
         <Ionicon name="ios-eye-off-outline" size={26} color="#A9A9A9" />
         <Text style={styles.notFoundLabel}>No articles found</Text>
       </View>
-    )
-  ) : (
-    <ActivityIndicator color={colors.PRIMARY} size={33} />
+    </>
   );
 };
 
