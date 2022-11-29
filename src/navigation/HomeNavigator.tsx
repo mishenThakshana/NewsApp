@@ -1,6 +1,6 @@
+import React, {FC, useLayoutEffect} from 'react';
 import {getFocusedRouteNameFromRoute} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {FC, useLayoutEffect} from 'react';
 import {routes} from 'src/constants';
 import {AllNews, Home, NewsDetail} from 'src/screens/main';
 import styles from 'src/styles/Common.styles';

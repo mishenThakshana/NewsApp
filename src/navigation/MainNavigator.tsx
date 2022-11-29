@@ -1,3 +1,4 @@
+import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {Favourites, Profile} from 'src/screens/main';
 import routes from 'src/constants/routes';
@@ -21,9 +22,10 @@ const MainNavigator = () => {
         headerShown: false,
         tabBarStyle: styles.tabBarStyle,
         tabBarLabelStyle: {
-          paddingVertical: 5,
+          top: 20,
           fontFamily: 'Nunito-Regular',
         },
+        tabBarIconStyle: {top: 10},
         tabBarActiveTintColor: '#000',
       }}>
       <Tab.Screen

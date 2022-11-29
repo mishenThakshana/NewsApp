@@ -1,4 +1,4 @@
-import {FC} from 'react';
+import React, {FC} from 'react';
 import {View, Text, Modal, Pressable} from 'react-native';
 import {countries, languages} from 'src/data/data';
 import styles from 'src/styles/Common.styles';

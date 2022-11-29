@@ -1,9 +1,10 @@
 import {FC} from 'react';
-import {ActivityIndicator, FlatList, Text, View} from 'react-native';
-import {colors, routes} from 'src/constants';
+import {FlatList, Text, View} from 'react-native';
+import {routes} from 'src/constants';
 import NewsCard2 from './NewsCard2';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 import styles from 'src/styles/Common.styles';
+import React from 'react';
 
 interface VerticalNewsListInterface {
   articles: any;

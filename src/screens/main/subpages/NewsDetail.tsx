@@ -1,8 +1,7 @@
-import {FC} from 'react';
+import React, {FC} from 'react';
 import {
   View,
   SafeAreaView,
-  Image,
   useWindowDimensions,
   TouchableOpacity,
   Text,

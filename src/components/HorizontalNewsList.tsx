@@ -1,4 +1,4 @@
-import {FC} from 'react';
+import React, {FC} from 'react';
 import {ActivityIndicator, FlatList, Text, View} from 'react-native';
 import {colors, routes} from 'src/constants';
 import NewsCard from './NewsCard';

@@ -1,4 +1,4 @@
-import {FC, useContext, useEffect, useState} from 'react';
+import React, {FC, useContext, useEffect, useState} from 'react';
 import {View, SafeAreaView, useWindowDimensions, Keyboard} from 'react-native';
 import {UserContext} from 'src/context/UserContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';

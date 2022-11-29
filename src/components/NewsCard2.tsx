@@ -1,12 +1,6 @@
 import {formatDistance} from 'date-fns';
-import {FC} from 'react';
-import {
-  View,
-  Text,
-  ImageBackground,
-  useWindowDimensions,
-  TouchableOpacity,
-} from 'react-native';
+import React, {FC} from 'react';
+import {View, Text, useWindowDimensions, TouchableOpacity} from 'react-native';
 import {firstLetterCapital} from 'src/helpers/FunctionHelper';
 import styles from 'src/styles/Common.styles';
 import FastImage from 'react-native-fast-image';
