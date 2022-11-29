@@ -10,6 +10,7 @@ interface VerticalNewsListInterface {
   onEndReachedHandler?: () => void;
   navigation: any;
   loading: boolean;
+  headerComponent?: any;
 }
 
 const VerticalNewsList: FC<VerticalNewsListInterface> = ({
@@ -17,6 +18,7 @@ const VerticalNewsList: FC<VerticalNewsListInterface> = ({
   onEndReachedHandler,
   navigation,
   loading,
+  headerComponent,
 }) => {
   return !loading ? (
     articles.length > 0 ? (
@@ -39,6 +41,7 @@ const VerticalNewsList: FC<VerticalNewsListInterface> = ({
           onEndReachedThreshold={0}
           onEndReached={onEndReachedHandler}
           initialNumToRender={5}
+          ListHeaderComponent={headerComponent}
         />
       </View>
     ) : (

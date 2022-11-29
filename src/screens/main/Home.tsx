@@ -88,13 +88,9 @@ const Home: FC<HomeInterface> = ({navigation}) => {
     setCategoryPage(categoryPage + 1);
   };
 
-  return (
-    <SafeAreaView
-      style={[
-        styles.rootContainer,
-        modalVisible && {opacity: 0.5, backgroundColor: 'rgba(0,0,0,0)'},
-      ]}>
-      <View style={{margin: 20}}>
+  const HeaderComponent = () => {
+    return (
+      <>
         <Topbar navigation={navigation} />
         <SectionTitle
           handler={() => navigation.navigate(routes.ALL_NEWS)}
@@ -120,12 +116,24 @@ const Home: FC<HomeInterface> = ({navigation}) => {
           setActiveFilter={(item: string) => setActiveCategory(item)}
           labels={categories}
         />
+      </>
+    );
+  };
+
+  return (
+    <SafeAreaView
+      style={[
+        styles.rootContainer,
+        modalVisible && {opacity: 0.5, backgroundColor: 'rgba(0,0,0,0)'},
+      ]}>
+      <View style={{margin: 20}}>
         {categoryArticles && (
           <VerticalNewsList
             loading={loadingCategoryNews}
             navigation={navigation}
             articles={categoryArticles}
             onEndReachedHandler={loadMoreCategoryNews}
+            headerComponent={() => <HeaderComponent />}
           />
         )}
       </View>
