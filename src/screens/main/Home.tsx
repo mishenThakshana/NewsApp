@@ -17,9 +17,10 @@ import AwesomeAlert from 'react-native-awesome-alerts';
 
 interface HomeInterface {
   navigation: any;
+  route: any;
 }
 
-const Home: FC<HomeInterface> = ({navigation}) => {
+const Home: FC<HomeInterface> = ({navigation, route}) => {
   const [articles, setArticles] = useState<any>([]);
   const [categoryArticles, setCategoryArticles] = useState<any>([]);
   const [activeCategory, setActiveCategory] = useState<string>(categories[0]);
@@ -129,6 +130,7 @@ const Home: FC<HomeInterface> = ({navigation}) => {
             articles={categoryArticles}
             onEndReachedHandler={loadMoreCategoryNews}
             HeaderComponent={() => <HeaderComponent />}
+            route={route}
           />
         )}
       </View>

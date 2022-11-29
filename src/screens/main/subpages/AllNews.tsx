@@ -14,24 +14,21 @@ import styles from 'src/styles/Common.styles';
 
 interface AllNewsInterface {
   navigation: any;
+  route: any;
 }
 
-const AllNews: FC<AllNewsInterface> = ({navigation}) => {
+const AllNews: FC<AllNewsInterface> = ({navigation, route}) => {
   const [categoryArticles, setCategoryArticles] = useState<any>([]);
   const [activeCategory, setActiveCategory] = useState<string>(categories[0]);
   const [activeLanguage, setActiveLanguage] = useState<string>(languages[2]);
   const [activeCountry, setActiveCountry] = useState<string>(countries[51]);
   const [categoryPage, setCategoryPage] = useState<number>(1);
   const [modalVisible, setModalVisible] = useState(false);
-  // loaders
-  const [loadingCategoryNews, setLoadingCategoryNews] =
-    useState<boolean>(false);
   // Error handling
   const [errorAlert, setErrorAlert] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>('');
 
   const getCategoryNews = () => {
-    categoryPage < 2 && setLoadingCategoryNews(true);
     protectedHttp
       .get(
         `/top-headlines?country=${activeCountry}&language=${activeLanguage}&category=${activeCategory}&pageSize=10&page=${categoryPage}`,
@@ -47,8 +44,7 @@ const AllNews: FC<AllNewsInterface> = ({navigation}) => {
       .catch(error => {
         setErrorAlert(true);
         setErrorMessage(error.response.data.message);
-      })
-      .finally(() => setLoadingCategoryNews(false));
+      });
   };
 
   useEffect(() => {
@@ -82,10 +78,10 @@ const AllNews: FC<AllNewsInterface> = ({navigation}) => {
         />
         {categoryArticles && (
           <VerticalNewsList
-            loading={loadingCategoryNews}
             navigation={navigation}
             articles={categoryArticles}
             onEndReachedHandler={loadMoreCategoryNews}
+            route={route}
           />
         )}
       </View>

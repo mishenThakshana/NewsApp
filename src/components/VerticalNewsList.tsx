@@ -10,6 +10,7 @@ interface VerticalNewsListInterface {
   onEndReachedHandler?: () => void;
   navigation: any;
   HeaderComponent?: any;
+  route: any;
 }
 
 const VerticalNewsList: FC<VerticalNewsListInterface> = ({
@@ -17,6 +18,7 @@ const VerticalNewsList: FC<VerticalNewsListInterface> = ({
   onEndReachedHandler,
   navigation,
   HeaderComponent,
+  route,
 }) => {
   return articles.length > 0 ? (
     <View>
@@ -43,7 +45,7 @@ const VerticalNewsList: FC<VerticalNewsListInterface> = ({
     </View>
   ) : (
     <>
-      <HeaderComponent />
+      {route.name === 'HomeScreen' && <HeaderComponent />}
       <View style={styles.notFoundContainer}>
         <Ionicon name="ios-eye-off-outline" size={26} color="#A9A9A9" />
         <Text style={styles.notFoundLabel}>No articles found</Text>
